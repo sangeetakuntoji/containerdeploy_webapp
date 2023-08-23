@@ -13,7 +13,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: dotnet
+        working-directory: dockercontent
     steps:
     # checkout the repo
     - name: 'Checkout GitHub Action' 
@@ -29,13 +29,13 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }}
-        docker push samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }}     
+        docker build . -t samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }}
+        docker push samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }}     
       
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'samplecontaineracr00'
-        images: 'samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }}'
+        images: 'samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }}'
     
     - name: Azure logout
       run: |
