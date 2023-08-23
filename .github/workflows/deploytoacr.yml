@@ -11,10 +11,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: name: Build Linux Container Image and Push to ACR
-
-on:
-  workflow_dispatch:
+        working-directory: dockercontent
 
 jobs:
   build:
