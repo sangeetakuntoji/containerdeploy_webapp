@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-deployment
+  labels:
+    type: front-end
+spec: 
+  template:
+    metadata:
+      name: nginxpod
+      labels:
+        app: mynginxapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginxcontainer
+          image: wordpress
+selector:
+  matchLabels:
+  type: front-end
+  replicas: 3
