@@ -1,7 +1,9 @@
 name: Build Linux Container Image and Push to ACR
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -31,7 +33,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: dotnet
+        working-directory: dockercontent
     steps:
     - uses: actions/checkout@v2
     - uses: azure/docker-login@v1
@@ -50,8 +52,8 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }} 
-        docker push samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }}
+        docker build . -t samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }} 
+        docker push samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }}
     steps:
     - uses: actions/checkout@v2
     - uses: azure/docker-login@v1
@@ -60,5 +62,5 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }} 
-        docker push samplecontaineracr001.azurecr.io/dotnetapp:${{ github.sha }}
+        docker build . -t samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }} 
+        docker push samplecontaineracr001.azurecr.io/websitehtml:v1:${{ github.sha }}
