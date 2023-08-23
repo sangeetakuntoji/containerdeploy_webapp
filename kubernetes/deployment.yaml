@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    type: front-end
-spec: 
+  name: websitehtml
+spec:
   selector:
-      type: front-end
-  replicas: 3
+    matchLabels:
+      app: websitehtml
   template:
     metadata:
       labels:
-        type: front-end
-  spec:
-     containers:
-        - name: nginxcontainer
-          image: nginx:latest
-          ports:
-          - containerPort: 80
-    
-  
+        app: githubactions-aks-demo
+    spec:
+      containers:
+      - name: websitehtml
+        image: samplecontaineracr001.azurecr.io/websitehtml
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

@@ -1,21 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: first-deployment
-  labels:
-    type: front-end
-spec: 
-  template:
-    metadata:
-      name: nginxpod
-      labels:
-        app: mynginxapp
-        type: front-end
-    spec:
-      containers:
-        - name: nginxcontainer
-          image: wordpress
-selector:
-  matchLabels:
-  type: front-end
-  replicas: 3
+  name: websitehtml
+spec:
+  selector:
+    app: websitehtml
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 80
