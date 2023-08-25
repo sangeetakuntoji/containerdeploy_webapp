@@ -35,6 +35,6 @@ jobs:
     
     - name: Azure logout
       run: |
-        az logout
-        az purge
-        az clear
+       az logout
+       az cache purge
+       az account clear
