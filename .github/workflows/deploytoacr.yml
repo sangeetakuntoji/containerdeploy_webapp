@@ -16,9 +16,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: azure/docker-login@v1
       with:
-        login-server: testexamplecontainer001.azurecr.io
+        login-server: devlopmentacr.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build -t testexamplecontainer001.azurecr.io/websitehtml:v1 .
-        docker push testexamplecontainer001.azurecr.io/websitehtml:v1
+        docker build . -t devlopmentacr.azurecr.io/websitehtml:${{ github.sha }} 
+        docker push devlopmentacr.azurecr.io/websitehtml:${{ github.sha }} 
