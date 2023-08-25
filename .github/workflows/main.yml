@@ -21,20 +21,19 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: azure/docker-login@v1
       with:
-        login-server: testexamplecontainer001.azurecr.io
+        login-server: devlopmentacr.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build -t testexamplecontainer001.azurecr.io/websitehtml:v1 .
-        docker push testexamplecontainer001.azurecr.io/websitehtml:v1     
+        docker build -t devlopmentacr.azurecr.io/websitehtml:${{ github.sha }} .
+        docker push devlopmentacr.azurecr.io/websitehtml:${{ github.sha }}     
       
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'samplecontaineracr00'
-        images: 'testexamplecontainer001.azurecr.io/websitehtml:v1'
+        app-name: 'demotwebapp002'
+        images: 'devlopmentacr.azurecr.io/websitehtml:${{ github.sha }}'
     
     - name: Azure logout
       run: |
        az logout
-       az cache purge
-       az account clear
+       
