@@ -26,7 +26,7 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
         docker build -t testexamplecontainer001.azurecr.io/websitehtml:v1 .
-        docker push samplecontaineracr001.azurecr.io/websitehtml:v1     
+        docker push testexamplecontainer001.azurecr.io/websitehtml:v1     
       
     - uses: azure/webapps-deploy@v2
       with:
