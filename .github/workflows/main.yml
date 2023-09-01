@@ -30,7 +30,7 @@ jobs:
       
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'demotestwebapp01'
+        app-name: 'devlopmentappservice001'
         images: 'devlopmentacr.azurecr.io/websitehtml:${{ github.sha }}'
     
     - name: Azure logout
