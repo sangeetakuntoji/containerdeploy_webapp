@@ -1,4 +1,4 @@
-name: Deploy Container Image to Azure webapp 
+name: Deploy Container Image to Azure-webapp 
 
 on:
   workflow_dispatch:
