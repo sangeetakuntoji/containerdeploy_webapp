@@ -25,13 +25,13 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build -t devlopmentacr.azurecr.io/websitehtml:${{ github.sha }} .
-        docker push devlopmentacr.azurecr.io/websitehtml:${{ github.sha }}     
+        docker build -t devlopmentacr.azurecr.io/mywebsite:${{ github.sha }} .
+        docker push devlopmentacr.azurecr.io/mywebsite:${{ github.sha }}     
       
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'devlopmentappservice001'
-        images: 'devlopmentacr.azurecr.io/websitehtml:${{ github.sha }}'
+        images: 'devlopmentacr.azurecr.io/mywebsite:${{ github.sha }}'
     
     - name: Azure logout
       run: |
